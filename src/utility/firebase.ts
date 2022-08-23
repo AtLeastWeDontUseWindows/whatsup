@@ -1,6 +1,7 @@
 
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
+import { createSignal } from 'solid-js';
 
 const { 
   VITE_APIKEY, 
@@ -22,23 +23,32 @@ const firebaseConfig = {
   appId: VITE_APPID
 };
 
+const [loading, setLoading] = createSignal(false);
+
 const googleProvider = new GoogleAuthProvider();
 const app = firebase.initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const signInWithGoogle = async () => {
   try {
-    await signInWithPopup(auth, googleProvider);
+    setLoading(true)
+    const res = await signInWithPopup(auth, googleProvider);
+    return res.user;
   } catch (err) {
     console.error(err);
     alert((err as unknown as any).message);
+  } finally {
+    setLoading(false)
   }
 };
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
+    setLoading(true)
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert((err as unknown as any).message);
+  } finally {
+    setLoading(false)
   }
 };
 
@@ -51,5 +61,6 @@ export {
   auth,
   signInWithGoogle,
   logInWithEmailAndPassword,
-  logout
+  logout,
+  loading
 };
