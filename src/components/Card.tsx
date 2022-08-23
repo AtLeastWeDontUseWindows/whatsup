@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { DataObject } from './App';
+import { DataObject } from '../App';
 
 interface CardProps {
   data: DataObject;
