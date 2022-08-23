@@ -32,3 +32,7 @@ Your app is ready to be deployed!
 ## Deployment
 
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+
+## Deploy to firebase hosting
+
+Run npm run deploy, then we will populate the dist folder with the build, and then firebase will deploy it.
