@@ -1,16 +1,25 @@
 
 import firebase from 'firebase/compat/app';
 import "firebase/auth";
-// TODO: Replace the following with your app's Firebase project configuration
+
+const { 
+  VITE_APIKEY, 
+  VITE_AUTHDOMAIN, 
+  VITE_DATABASEURL, 
+  VITE_PROJECTID, 
+  VITE_STORAGEBUCKET, 
+  VITE_MESSAGINGSENDERID, 
+  VITE_APPID
+} = import.meta.env;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyABjppgZYco1PyrV3zy4S3OPFMObcKLkBk",
-  authDomain: "test-9a9cf.firebaseapp.com",
-  databaseURL: "https://test-9a9cf.firebaseio.com",
-  projectId: "test-9a9cf",
-  storageBucket: "test-9a9cf.appspot.com",
-  messagingSenderId: "552361323154",
-  appId: "1:552361323154:web:f0e71025e8f907c73d544b"
+  apiKey: VITE_APIKEY,
+  authDomain: VITE_AUTHDOMAIN,
+  databaseURL: VITE_DATABASEURL,
+  projectId: VITE_PROJECTID,
+  storageBucket: VITE_STORAGEBUCKET,
+  messagingSenderId: VITE_MESSAGINGSENDERID,
+  appId: VITE_APPID
 };
 
 firebase.initializeApp(firebaseConfig);
